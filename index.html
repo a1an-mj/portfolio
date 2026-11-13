@@ -24,7 +24,8 @@
   color-scheme: light;
 }
 *{box-sizing:border-box}
-html,body{margin:0}
+html,body{margin:0;overflow-x:hidden}
+@supports (overflow:clip){html,body{overflow-x:clip}}
 body{background:#6aa7da;color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 h1,h2,h3{text-wrap:balance;margin:0}
 a{color:inherit}
@@ -232,7 +233,7 @@ section{padding:110px 0}
 .count div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 14px;min-width:84px;text-align:center}
 .count b{display:block;font-size:34px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
 .count span{font-size:11px;text-transform:uppercase;letter-spacing:.08em;opacity:.7}
-.ctitle{text-align:center;font-family:var(--f-mono);font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#ffcf6b}
+.ctitle{margin-bottom:34px;text-align:center;font-family:var(--f-mono);font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#ffcf6b}
 .glitch{position:relative;display:inline-block}
 .pill{display:grid;place-items:center;height:clamp(150px,22vw,300px);border-radius:999px;background:rgba(230,236,245,.88);color:#0e1016;text-decoration:none;font-family:var(--f-display);font-weight:800;font-size:clamp(56px,9vw,130px);letter-spacing:-.04em;box-shadow:0 0 0 1px rgba(255,255,255,.3),0 40px 120px rgba(255,74,46,.25);transition:transform .5s cubic-bezier(.2,.9,.2,1.2),background .4s;cursor:pointer;position:relative;overflow:hidden}
 .pill:hover{background:#fff}
@@ -291,6 +292,17 @@ section{padding:110px 0}
   .two{grid-template-columns:1fr}
       .steps{grid-template-columns:1fr}
   .copy{margin:10px 0 0}
+}
+@media (max-width:520px){
+  .bigfolder{margin-top:6px;width:min(240px,62vw)}
+  .row{grid-template-columns:28px 1fr 40px;gap:12px;padding:20px 16px}
+  .rt{font-size:24px}
+  .rt .live{display:table;margin:8px 0 0}
+  .ra{width:38px;height:38px}
+  .steps{border-top:0;border-left:2px solid currentColor;padding-left:24px;row-gap:28px}
+  .step{padding:0}
+  .step::before{left:-33px;top:4px}
+  .tape{margin:30px 0}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -412,7 +424,7 @@ section{padding:110px 0}
       <div class="eyebrow rv">How it works</div>
       <div class="steps rv">
         <div class="step"><div class="sn">Day 1</div><h3>Brief</h3><p>We talk on WhatsApp or a call about your business and what the site needs to do.</p></div>
-        <div class="step"><div class="sn">Day 2</div><h3>Design</h3><p>You get a design to react to. Changes are free until you're happy.</p></div>
+        <div class="step"><div class="sn">Day 2</div><h3>Design</h3><p>You get a design to react to. Two rounds of changes are included.</p></div>
         <div class="step"><div class="sn">Day 3 to 4</div><h3>Build</h3><p>I code it, test it on phones and computers, and make it fast.</p></div>
         <div class="step"><div class="sn">Day 5</div><h3>Launch</h3><p>Your site goes live on your own domain, and I show you how to update it.</p></div>
       </div>
@@ -445,7 +457,7 @@ section{padding:110px 0}
               </select>
             </label>
             <label for="f-when">By when
-              <select id="f-when" name="when"><option>This week</option><option>Before end of November</option><option>This month or next</option><option>No rush</option></select>
+              <select id="f-when" name="when"><option>This week</option><option>Within 2 weeks</option><option>Within a month</option><option>No rush</option></select>
             </label>
           </div>
           <label for="f-msg">Tell me more<textarea id="f-msg" name="msg" placeholder="We sell cakes and want people to see our menu and order on WhatsApp."></textarea></label>
@@ -462,8 +474,7 @@ section{padding:110px 0}
   <!-- CONTACT -->
   <section id="contact" class="contact">
     <div class="wrap">
-      <div class="ctitle">November slots close in</div>
-      <div class="count" role="timer" aria-label="Time left in November"><div><b id="cd-d">00</b><span>days</span></div><div><b id="cd-h">00</b><span>hours</span></div><div><b id="cd-m">00</b><span>mins</span></div><div><b id="cd-s">00</b><span>secs</span></div></div>
+      <div class="ctitle">Have a project in mind?</div>
       <a class="pill" id="pill" href="https://wa.me/919037561377?text=Hi%20Alan%2C%20I%20saw%20your%20portfolio%20and%20want%20a%20website." target="_blank" rel="noopener" data-follow data-ft="Need a website for your business? Let's talk." data-fs="Opens WhatsApp chat with Alan" data-fl="Based in" data-fr="Ernakulam, Kerala"><span class="glitch" data-t="Contact">Contact</span></a>
       <div class="links">
         <a href="mailto:alanmjiju2003@gmail.com">alanmjiju2003@gmail.com</a>
@@ -544,7 +555,7 @@ order.forEach((k,i)=>{
 const skills=['HTML','CSS','JavaScript','React','Angular','Node.js','PostgreSQL','MySQL','AWS','Python','Java','C','Responsive design','Mobile-first','Linux'];
 const sk=skills.map(s=>`<span class="chip">${s}</span>`).join('');
 $('#skills').innerHTML=sk+sk;
-const tp=Array(8).fill('<span>November slots closing</span><span>◆</span><span>Book your website now</span><span>◆</span>').join('');
+const tp=Array(8).fill('<span>Open for new projects</span><span>◆</span><span>Websites for Kerala businesses</span><span>◆</span>').join('');
 $('#tape').innerHTML=tp+tp;
 
 /* ---------- window ---------- */
@@ -625,14 +636,10 @@ if(FINE){
 /* ---------- clock + countdown ---------- */
 const fmtT=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit'});
 const fmtD=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Kolkata',day:'2-digit',month:'2-digit',year:'numeric'});
-const end=new Date('2026-11-30T23:59:59+05:30').getTime();
 const pad=n=>String(n).padStart(2,'0');
 function tick(){
   const now=new Date(); const t=fmtT.format(now);
   $('#time').textContent=t; $('#ftime').textContent=t+' IST'; $('#fdate').textContent=fmtD.format(now);
-  let d=Math.max(0,end-now.getTime())/1000;
-  const dd=Math.floor(d/86400); d-=dd*86400; const hh=Math.floor(d/3600); d-=hh*3600; const mm=Math.floor(d/60); const ss=Math.floor(d-mm*60);
-  $('#cd-d').textContent=pad(dd);$('#cd-h').textContent=pad(hh);$('#cd-m').textContent=pad(mm);$('#cd-s').textContent=pad(ss);
 }
 tick(); setInterval(tick,1000);
 
