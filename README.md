@@ -4,6 +4,4 @@ Personal portfolio of Alan M Jiju, web designer and front-end developer based in
 
 A single static page (`index.html`): a live sky that changes from day to night as you scroll, draggable desktop icons, project windows, and an inquiry form that opens WhatsApp.
 
-## Deploy
 
-No build step. On Vercel, import this repository and keep the defaults (Framework: Other). Vercel serves `index.html` as is.
