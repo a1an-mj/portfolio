@@ -260,6 +260,7 @@ section{padding:110px 0}
 .wbody .meta{font-family:var(--f-mono);font-size:13px;opacity:.75}
 .wbody p{margin:0;font-size:17px;max-width:60ch}
 .stack{display:flex;flex-wrap:wrap;gap:8px}
+.wbody .go.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
 .wbody .go{justify-self:start;background:var(--ink);color:#fff;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:600}
 
 /* scroll reveal: visible by default, animated where supported */
@@ -499,7 +500,7 @@ section{padding:110px 0}
       <p id="w-desc"></p>
       <div class="stack" id="w-stack"></div>
       <span class="meta" id="w-soon" style="display:none">Live site coming soon, once the domain is set up. The code is on GitHub.</span>
-      <a class="go" id="w-link" target="_blank" rel="noopener">Open project →</a>
+      <div class="stack"><a class="go" id="w-link" target="_blank" rel="noopener">Open project →</a><a class="go ghost" id="w-code" target="_blank" rel="noopener">View code on GitHub →</a></div>
     </div>
   </div>
 </div>
@@ -512,9 +513,9 @@ const $ = s => document.querySelector(s);
 
 /* ---------- data ---------- */
 const P = {
-  quoteyard:{file:'quote_yard.app',title:'Quote Yard',meta:'Main project · Launching soon',kind:'Full-stack product',
+  quoteyard:{file:'quote_yard.app',title:'Quote Yard',meta:'Main project · Live at quoteyard.in',kind:'Full-stack product',
     desc:'A price comparison site for Kerala electronics shops. Scrapers collect listings from myG, Oxygen, Pittappillil and Nandilath G Mart. A pipeline cleans and classifies them, a matcher groups the same product across shops, and users get email alerts when prices drop. So far: 2,965 listings, 113 phones matched across stores, and 163 passing tests.',
-    stack:['Python','FastAPI','PostgreSQL','React','Playwright'],link:'https://github.com/a1an-mj/Quote-Yard',soon:true,
+    stack:['Python','FastAPI','PostgreSQL','React','Playwright'],link:'https://quoteyard.in/',code:'https://github.com/a1an-mj/Quote-Yard',live:true,
     mock:{a:'#f7f7f4',b:'#15151b',c:'#ff6a2b',t:'compare'}},
   littlehands:{file:'little_hands.html',title:'Little Hands Kindergarten',meta:'Client website · Live',kind:'Website',
     desc:'A fully responsive website for a kindergarten in Ernakulam, built mobile-first with pure HTML and CSS. It has easy navigation, photo galleries and a contact form, and works across browsers.',
@@ -567,6 +568,7 @@ function openWin(k){
   $('#w-stack').innerHTML=p.stack.map(s=>`<span class="chip">${s}</span>`).join('');
   const l=$('#w-link'); if(p.link){l.href=p.link;l.style.display='';l.textContent=p.live?'Visit live site →':'View code on GitHub →'} else l.style.display='none';
   $('#w-soon').style.display=p.soon?'':'none';
+  const c=$('#w-code'); if(p.code){c.href=p.code;c.style.display=''} else c.style.display='none';
   ov.classList.add('open'); ov.setAttribute('aria-hidden','false'); $('#wclose').focus();
 }
 function closeWin(){ov.classList.remove('open');ov.setAttribute('aria-hidden','true');if(lastFocus)lastFocus.focus()}
